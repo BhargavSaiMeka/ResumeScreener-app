@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Matching Resumes</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1> Results</h1>
+    <div class="results-container">
+      <div class="result-box matching-resumes">
+        <h2>Matching Resumes</h2>
+        {% if resumes %}
+          <ul>
+            {% for resume in resumes %}
+              <li>{{ resume }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No matching resumes found.</p>
+        {% endif %}
+      </div>
+      <div class="result-box unmatched-resumes">
+        <h2>Unmatched Resumes</h2>
+        {% if unmatched_resumes %}
+          <ul>
+            {% for resume in unmatched_resumes %}
+              <li>{{ resume }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No unmatched resumes found.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

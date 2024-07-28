@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Resumes</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+  <script type="text/javascript">
+    function addFileInput() {
+      const container = document.getElementById("fileInputs");
+      const input = document.createElement("input");
+      input.type = "file";
+      input.name = "file[]";
+      input.multiple = true;
+      container.appendChild(input);
+      container.appendChild(document.createElement("br"));
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1><b>ResumeSorter</b></h1>
+    <h2>Upload Resumes</h2>
+    <form action="/" method="POST" enctype="multipart/form-data">
+      <div id="fileInputs">
+        <input type="file" name="file[]" multiple><br>
+      </div>
+      <button type="button" onclick="addFileInput()">Add another file</button>
+      <input type="submit" value="Upload">
+    </form>
+  </div>
+</body>
+</html>
