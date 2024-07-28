@@ -34,3 +34,6 @@ def upload_file():
                 unmatched_resumes.append(file.filename)
         return render_template("result.html", resumes=matching_resumes, unmatched_resumes=unmatched_resumes, emails=matching_emails)
     return render_template("upload.html")
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)

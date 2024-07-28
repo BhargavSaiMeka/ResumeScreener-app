@@ -1,4 +1,8 @@
-Flask
-PyPDF2>=3.0.0
+Flask==2.1.1
+PyPDF2==3.0.0
+streamlit==1.13.0
+psutil==5.9.1
+Werkzeug==2.1.1
 nltk
+
 

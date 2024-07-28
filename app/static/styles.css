@@ -1,102 +1,76 @@
-/* Base Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: url('https://www.example.com/your-background-image.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #333;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
 }
 
-/* Container Styling */
 .container {
-    max-width: 800px;
-    margin: 50px auto;
-    background: rgba(255, 255, 255, 0.9); /* Transparent white */
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Heading */
 h1 {
-    margin-bottom: 20px;
-    font-size: 2.5em;
-    color: #4CAF50; /* Green */
+    text-align: center;
+    color: #333333;
 }
 
-/* Form Styling */
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-input[type="file"] {
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
     display: block;
-    margin: 10px 0;
 }
 
-button, input[type="submit"] {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #4CAF50; /* Green */
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 50px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    font-size: 16px;
 }
 
-button:hover, input[type="submit"]:hover {
-    background: #45A049; /* Darker green */
+button:hover {
+    background-color: #45a049;
 }
 
-/* File Input Container */
-#fileInputs {
-    margin-bottom: 20px;
-}
-
-/* Results Container */
 .results-container {
     display: flex;
     justify-content: space-between;
-}
-
-.result-box {
-    width: 48%;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Matching Resumes Box */
-.matching-resumes {
-    background: #E8F5E9; /* Light green */
-}
-
-/* Unmatched Resumes Box */
-.unmatched-resumes {
-    background: #FDEDEC; /* Light red */
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    background: #E8F5E9; /* Light green */
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-p {
-    background: #E8F5E9; /* Light green */
-    padding: 20px;
-    border-radius: 5px;
     margin-top: 20px;
+}
+
+.box {
+    width: 45%;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.matched {
+    background-color: #e0f7fa;
+}
+
+.unmatched {
+    background-color: #ffebee;
 }

@@ -1,32 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Upload Resumes</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-  <script type="text/javascript">
-    function addFileInput() {
-      const container = document.getElementById("fileInputs");
-      const input = document.createElement("input");
-      input.type = "file";
-      input.name = "file[]";
-      input.multiple = true;
-      container.appendChild(input);
-      container.appendChild(document.createElement("br"));
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Resumes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h1><b>ResumeSorter</b></h1>
-    <h2>Upload Resumes</h2>
-    <form action="/" method="POST" enctype="multipart/form-data">
-      <div id="fileInputs">
-        <input type="file" name="file[]" multiple><br>
-      </div>
-      <button type="button" onclick="addFileInput()">Add another file</button>
-      <input type="submit" value="Upload">
-    </form>
-  </div>
+<h1><centre><b>ResumeScreener</b></centre></h1>
+    <div class="container">
+        <h1>Upload Resumes</h1>
+        <form id="uploadForm" action="/" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="keywords">Enter Keywords (comma-separated):</label>
+                <input type="text" name="keywords" id="keywords" required>
+            </div>
+            <div id="fileInputs">
+                <div class="fileInput">
+                    <label for="file1">Choose files:</label>
+                    <input type="file" name="file[]" id="file1" multiple required>
+                </div>
+            </div>
+            <div>
+                <button type="button" onclick="addFileInput()">Add More Files</button>
+                <button type="submit">Upload</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        let fileInputCount = 1;
+
+        function addFileInput() {
+            fileInputCount++;
+            const newFileInput = document.createElement('div');
+            newFileInput.classList.add('fileInput');
+            newFileInput.innerHTML = `<label for="file${fileInputCount}">Choose files:</label>
+                                      <input type="file" name="file[]" id="file${fileInputCount}" multiple>`;
+            document.getElementById('fileInputs').appendChild(newFileInput);
+        }
+    </script>
 </body>
 </html>

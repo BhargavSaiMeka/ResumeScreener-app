@@ -1,39 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Matching Resumes</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h1> Results</h1>
-    <div class="results-container">
-      <div class="result-box matching-resumes">
-        <h2>Matching Resumes</h2>
-        {% if resumes %}
-          <ul>
-            {% for resume in resumes %}
-              <li>{{ resume }}</li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p>No matching resumes found.</p>
-        {% endif %}
-      </div>
-      <div class="result-box unmatched-resumes">
-        <h2>Unmatched Resumes</h2>
-        {% if unmatched_resumes %}
-          <ul>
-            {% for resume in unmatched_resumes %}
-              <li>{{ resume }}</li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p>No unmatched resumes found.</p>
-        {% endif %}
-      </div>
+    <div class="container">
+        <h1>Results</h1>
+        <div class="results-container">
+            <div class="box matched">
+                <h2>Matched Resumes</h2>
+                <ul>
+                    {% for resume in resumes %}
+                        <li>{{ resume }}</li>
+                    {% endfor %}
+                </ul>
+                <h3>Emails</h3>
+                <ul>
+                    {% for email in emails %}
+                        <li>{{ email }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="box unmatched">
+                <h2>Unmatched Resumes</h2>
+                <ul>
+                    {% for resume in unmatched_resumes %}
+                        <li>{{ resume }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 </html>
