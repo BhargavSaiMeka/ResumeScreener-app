@@ -5,7 +5,7 @@ import re
 def extract_text_from_pdf(pdf_file):
     reader = PdfReader(pdf_file)
     text = ""
-    for page_num in range(len(reader.pages)):
+    for page_num in range(len(reader.pages))):
         text += reader.pages[page_num].extract_text()
     return text
 
@@ -13,10 +13,7 @@ def extract_emails(text):
     email_pattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'
     return re.findall(email_pattern, text)
 
-def format_list(items):
-    return ", ".join(items)
-
-st.title('Resume Screening')
+st.title('Resume Filtering')
 
 keywords = st.text_input('Enter Keywords (comma-separated):')
 
@@ -39,12 +36,15 @@ if st.button('Upload'):
                 unmatched_resumes.append(file.name)
 
         st.subheader('Matched Resumes')
-        st.write(format_list(matching_resumes))
+        for resume in matching_resumes:
+            st.write(resume)
 
         st.subheader('Unmatched Resumes')
-        st.write(format_list(unmatched_resumes))
+        for resume in unmatched_resumes:
+            st.write(resume)
 
         st.subheader('Emails From Matched Resumes')
-        st.write(format_list(list(matching_emails)))
+        for email in matching_emails:
+            st.write(email)
     else:
         st.warning('Please upload files and enter keywords.')
