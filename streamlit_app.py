@@ -13,11 +13,16 @@ def extract_emails(text):
     email_pattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'
     return re.findall(email_pattern, text)
 
-st.title('Resume Filtering')
+st.title('📄 Resume Filtering')
 
-keywords = st.text_input('Enter Keywords (comma-separated):')
+st.markdown('''
+    This application helps you filter resumes based on specific keywords.
+    Simply upload the resumes and enter the keywords to get started.
+''')
 
-uploaded_files = st.file_uploader('Upload Resumes', accept_multiple_files=True)
+keywords = st.text_input('**Enter Keywords (comma-separated):**')
+
+uploaded_files = st.file_uploader('**Upload Resumes**', accept_multiple_files=True, type=['pdf'])
 
 if st.button('Upload'):
     if uploaded_files and keywords:
@@ -26,7 +31,10 @@ if st.button('Upload'):
         unmatched_resumes = []
         matching_emails = set()
 
-        for file in uploaded_files:
+        progress_bar = st.progress(0)
+        total_files = len(uploaded_files)
+
+        for i, file in enumerate(uploaded_files):
             text = extract_text_from_pdf(file)
             if any(keyword.lower() in text.lower() for keyword in keywords_list):
                 matching_resumes.append(file.name)
@@ -34,17 +42,33 @@ if st.button('Upload'):
                 matching_emails.update(emails)
             else:
                 unmatched_resumes.append(file.name)
+            progress_bar.progress((i + 1) / total_files)
 
-        st.subheader('Matched Resumes')
-        for resume in matching_resumes:
-            st.write(resume)
+        col1, col2, col3 = st.columns(3)
 
-        st.subheader('Unmatched Resumes')
-        for resume in unmatched_resumes:
-            st.write(resume)
+        with col1:
+            st.subheader('✅ Matched Resumes')
+            if matching_resumes:
+                for resume in matching_resumes:
+                    st.write(f"• {resume}")
+            else:
+                st.write("No matched resumes")
 
-        st.subheader('Emails From Matched Resumes')
-        for email in matching_emails:
-            st.write(email)
+        with col2:
+            st.subheader('❌ Unmatched Resumes')
+            if unmatched_resumes:
+                for resume in unmatched_resumes:
+                    st.write(f"• {resume}")
+            else:
+                st.write("No unmatched resumes")
+
+        with col3:
+            st.subheader('📧 Emails From Matched Resumes')
+            if matching_emails:
+                for email in matching_emails:
+                    st.write(f"• {email}")
+            else:
+                st.write("No emails found")
+
     else:
-        st.warning('Please upload files and enter keywords.')
+        st.warning('⚠️ Please upload files and enter keywords.')
