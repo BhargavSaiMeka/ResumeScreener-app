@@ -16,7 +16,7 @@ def extract_emails(text):
 def format_list(items):
     return ", ".join(items)
 
-st.title('Resume Filtering')
+st.title('Resume Screening')
 
 keywords = st.text_input('Enter Keywords (comma-separated):')
 
