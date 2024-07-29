@@ -13,6 +13,9 @@ def extract_emails(text):
     email_pattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+'
     return re.findall(email_pattern, text)
 
+def format_list(items):
+    return ", ".join(items)
+
 st.title('Resume Filtering')
 
 keywords = st.text_input('Enter Keywords (comma-separated):')
@@ -36,12 +39,12 @@ if st.button('Upload'):
                 unmatched_resumes.append(file.name)
 
         st.subheader('Matched Resumes')
-        st.write(matching_resumes)
+        st.write(format_list(matching_resumes))
 
         st.subheader('Unmatched Resumes')
-        st.write(unmatched_resumes)
+        st.write(format_list(unmatched_resumes))
 
         st.subheader('Emails From Matched Resumes')
-        st.write(list(matching_emails))
+        st.write(format_list(list(matching_emails)))
     else:
         st.warning('Please upload files and enter keywords.')
